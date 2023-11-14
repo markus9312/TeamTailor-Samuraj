@@ -3,7 +3,7 @@
  * Plugin Name: CoSwift
  * Description: A WordPress plugin to fetch job listings from TeamTailor and create Custom Post Types.
  * Version: 0.1
- * Author: dotMavriQ test
+ * Author: dotMavriQ
  */
 
 // Check if accessed directly.
