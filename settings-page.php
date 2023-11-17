@@ -36,10 +36,49 @@ function coswift_settings_page() {
                 echo fetch_coswift_job_listings();
                 echo '</div>';
             }
-            // Here we add the WP Job Openings shortcode
-            echo '<div class="wp-job-openings-list">';
-            echo do_shortcode('[awsmjobs]');
-            echo '</div>';
+
+            // Custom query to fetch job listings
+            $job_listings = new WP_Query([
+                'post_type' => 'awsm_job_openings', // Using the correct post type
+                'posts_per_page' => -1, // Adjust as needed
+            ]);
+
+            // Start the table for job listings
+            echo '<table class="wp-list-table widefat fixed striped">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Job Title</th>';
+            echo '<th>Job ID</th>';
+            echo '<th>Author</th>';
+            echo '<th>Applications</th>';
+            echo '<th>Expiry</th>';
+            echo '<th>Views</th>';
+            echo '<th>Conversion</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            // Loop through the job listings
+            while ($job_listings->have_posts()) {
+                $job_listings->the_post();
+                $post_id = get_the_ID();
+                echo '<tr>';
+                echo '<td>' . get_the_title() . '</td>';
+                echo '<td>' . $post_id . '</td>';
+                echo '<td>' . get_the_author() . '</td>';
+                // For Applications, Expiry, Views, Conversion, use get_post_meta() if these are stored as post meta.
+                echo '<td>' . get_post_meta($post_id, 'applications_meta_key', true) . '</td>'; // Replace 'applications_meta_key' with the actual meta key.
+                echo '<td>' . get_post_meta($post_id, 'expiry_meta_key', true) . '</td>'; // Replace 'expiry_meta_key'.
+                echo '<td>' . get_post_meta($post_id, 'views_meta_key', true) . '</td>'; // Replace 'views_meta_key'.
+                echo '<td>' . get_post_meta($post_id, 'conversion_meta_key', true) . '</td>'; // Replace 'conversion_meta_key'.
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+
+            // Reset Post Data
+            wp_reset_postdata();
         ?>
     </div>
     <style>
@@ -56,6 +95,8 @@ function coswift_settings_page() {
         .wp-job-openings-list {
             margin-top: 20px;
         }
+        /* Add additional CSS styles as needed */
     </style>
     <?php
 }
+?>
