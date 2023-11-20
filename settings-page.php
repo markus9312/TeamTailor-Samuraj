@@ -64,7 +64,7 @@ function coswift_settings_page() {
                 $post_id = get_the_ID();
                 echo '<tr>';
                 echo '<td>' . get_the_title() . '</td>';
-                echo '<td>' . $post_id . '</td>';
+                echo '<td>' . get_post_meta($post_id, 'teamtailor_job_id', true) . '</td>';
                 echo '<td>' . get_the_author() . '</td>';
                 // For Applications, Expiry, Views, Conversion, use get_post_meta() if these are stored as post meta.
                 echo '<td>' . get_post_meta($post_id, 'applications_meta_key', true) . '</td>'; // Replace 'applications_meta_key' with the actual meta key.
