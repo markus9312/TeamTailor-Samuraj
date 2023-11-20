@@ -31,7 +31,13 @@ function fetch_coswift_job_listings() {
         return "API Request Failed with Status Code: $status";
     }
 
-    return $response; // Return the raw response
+    // Decode and re-encode the response to format the JSON output
+    $decodedResponse = json_decode($response, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return "JSON Decode Error: " . json_last_error_msg();
+    }
+
+    return json_encode($decodedResponse, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
 
 // Function to sync job listings with the WordPress custom post types
