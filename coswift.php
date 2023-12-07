@@ -160,8 +160,21 @@ function fetch_coswift_job_listings_with_curl($api_key) {
 add_action('admin_enqueue_scripts', 'coswift_enqueue_admin_scripts');
 
 function coswift_enqueue_admin_scripts() {
-    wp_enqueue_script('coswift-admin-js', plugins_url('/js/scripts.js', __FILE__), array('jquery'), null, true );
-    wp_localize_script('coswift-admin-js', 'ajaxurl', admin_url('admin-ajax.php'));
+    // Enqueue your custom script with versioning to avoid caching issues
+    wp_enqueue_script(
+        'coswift-admin-js', // Handle for the script.
+        plugins_url('/js/scripts.js', __FILE__), // Path to the script file.
+        array('jquery'), // Dependencies, in this case, jQuery.
+        '1.0.1', // Version number for the script. Update this each time you make changes.
+        true // Place the script in the footer.
+    );
+
+    // Localize the script with new data
+    wp_localize_script(
+        'coswift-admin-js', // Handle for the script.
+        'ajaxurl', // The name of the JavaScript object that will contain the data.
+        admin_url('admin-ajax.php') // The data itself (the URL for the AJAX call).
+    );
 }
 // Function hooked to wp_ajax_ to handle the AJAX request
 add_action('wp_ajax_coswift_sync_jobs', 'coswift_sync_jobs_callback');
