@@ -1,0 +1,460 @@
+{
+    "data": [
+        {
+            "id": "2621561",
+            "type": "jobs",
+            "links": {
+                "careersite-job-url": "https://genii.teamtailor.com/en-GB/jobs/2621561-devsecops-security-engineer-m-w-d",
+                "careersite-job-apply-url": "https://genii.teamtailor.com/jobs/2621561-devsecops-security-engineer-m-w-d/applications/new",
+                "careersite-job-apply-iframe-url": "https://genii.teamtailor.com/jobs/2621561-devsecops-security-engineer-m-w-d/applications/new?iframe=true",
+                "self": "https://api.teamtailor.com/v1/jobs/2621561"
+            },
+            "attributes": {
+                "apply-button-text": "",
+                "body": "<p>The GENII Software Group offers leading, industry-specific software solutions and services explicitly developed for the needs of medium-sized companies and public administrations. With its industry expertise and personal customer relationships, the group is a trusted partner and expert advisor to its customers. It supports them in the digitization of core processes.</p><p>GENII consists of five business units focused on specific industries: Manufacturing, Retail, Wholesale and Distribution, Public Administration, and Laboratories. Their industry expertise is primarily available to European customers, particularly in Germany, Austria and Switzerland (DACH), Scandinavia, the Benelux countries, the United Kingdom and Italy.</p><p>Today, more than 2,400 employees work for the GENII Software Group at more than 20 locations in Europe.</p><p>For the central CTO area of GENII we are looking for a DevSecOps / Security Engineer (m/f/d) in Cologne, Hamburg or Munich as soon as possible, with whose help we would like to standardize, roll out and monitor security processes in the development and cloud operation of our software products. You will be responsible for group-wide security processes to incorporate security best practices as early as possible in the lifecycle of the various GENII applications.</p><h2>Your responsibilities:</h2><ul>\n<li>You advise and support the individual GENII development teams in the implementation of security requirements in software development and operations.</li>\n<li>You will anchor Shift Left Security in the agile development processes and support this paradigm shift through regular coaching.</li>\n<li>You accompany for the implementation of automated security checks in all phases of software delivery by integrating security controls, tools and processes into the DevOps workflow.</li>\n<li>You will identify potential attack scenarios and assist with threat analysis and mitigation.</li>\n<li>You further develop the guidelines and best practices for secure coding in development and test processes and ensure their implementation.</li>\n<li>You coordinate regular external penetration tests and track the implementation of resulting measures.</li>\n<li>You implement central processes to identify vulnerabilities in libraries, especially in used OSS.</li>\n</ul><h2>You can expect:</h2><ul>\n<li>An exciting and broad range of tasks within flat hierarchies in a high-growth environment with numerous opportunities for creativity</li>\n<li>An optimal and individual opportunity for further development</li>\n<li>Open corporate communication characterized by a “Duz” culture</li>\n<li>30 days annual leave, flexible working hours with the possibility of mobile working and much more…</li>\n</ul><p>Of course, we don’t want to tell you everything in this job posting. In addition to the above-mentioned task and offer, there are other exciting things to tell you.</p><p>If we have piqued your interest and you would like to know more details, apply now!</p><p>We are looking forward to your application, which you kindly include your salary expectations as well as your earliest possible starting date.</p><p>GSG GENII Software Group GmbH<br>Antonia Schmidt<br>Personnel Officer<br>Josef-Lammerting-Allee 20-22 – 50933 Cologne, Germany</p><p>T +49 221 37659-420<br>M +49 151 15935500<br><a href=\"mailto:antonia.schmidt@gus-group.com\">antonia.schmidt@gus-group.com</a></p>",
+                "end-date": null,
+                "human-status": "published",
+                "internal": false,
+                "language-code": "en-GB",
+                "picture": {
+                    "original": "https://images.teamtailor-cdn.com/images/s3/teamtailor-production/original-v3/image_uploads/697596f5-b1fa-46db-a572-cefe3f0d8b6c/original.jpeg",
+                    "standard": "https://images.teamtailor-cdn.com/images/s3/teamtailor-production/hero_picture_large-v6/image_uploads/697596f5-b1fa-46db-a572-cefe3f0d8b6c/original.jpeg",
+                    "thumb": "https://images.teamtailor-cdn.com/images/s3/teamtailor-production/user_picture_800-v9/image_uploads/697596f5-b1fa-46db-a572-cefe3f0d8b6c/original.jpeg"
+                },
+                "pinned": false,
+                "start-date": null,
+                "status": "open",
+                "tags": [],
+                "title": "DevSecOps / Security Engineer (m/w/d)",
+                "internal-name": "DevSecOps / Security Engineer (m/w/d)",
+                "pitch": "Are you a german-speaking looking for a project with new technologies and many opportunities to experiment? Want to work in an international environment? Then we are looking for you!",
+                "external-application-url": "",
+                "name-requirement": "optional",
+                "resume-requirement": "optional",
+                "cover-letter-requirement": "optional",
+                "phone-requirement": "optional",
+                "created-at": "2023-03-31T12:46:54.305+02:00",
+                "updated-at": "2023-11-23T17:44:08.194+01:00",
+                "sharing-image-layout": "default",
+                "mailbox": "job-4f38efd4-1cbe-41a6-b46a-d0b6a031fc08@inbound.teamtailor.com",
+                "remote-status": "none",
+                "salary-time-unit": "monthly",
+                "min-salary": null,
+                "max-salary": null,
+                "currency": "",
+                "recruiter-email": "joao.ribeiro@iptor.com"
+            },
+            "relationships": {
+                "activities": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/activities",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/activities"
+                    }
+                },
+                "department": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/department",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/department"
+                    }
+                },
+                "role": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/role",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/role"
+                    }
+                },
+                "location": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/location",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/location"
+                    }
+                },
+                "locations": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/locations",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/locations"
+                    }
+                },
+                "regions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/regions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/regions"
+                    }
+                },
+                "user": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/user",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/user"
+                    }
+                },
+                "questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/questions"
+                    }
+                },
+                "candidates": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/candidates",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/candidates"
+                    }
+                },
+                "stages": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/stages",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/stages"
+                    }
+                },
+                "colleagues": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/colleagues",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/colleagues"
+                    }
+                },
+                "team-memberships": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/team-memberships",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/team-memberships"
+                    }
+                },
+                "picked-questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/picked-questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/picked-questions"
+                    }
+                },
+                "requisition": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/requisition",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/requisition"
+                    }
+                },
+                "custom-fields": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/custom-fields",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/custom-fields"
+                    }
+                },
+                "custom-field-values": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/custom-field-values",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/custom-field-values"
+                    }
+                },
+                "team": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621561/relationships/team",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621561/team"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2621518",
+            "type": "jobs",
+            "links": {
+                "careersite-job-url": "https://genii.teamtailor.com/en-GB/jobs/2621518-it-security-officer-m-w-d",
+                "careersite-job-apply-url": "https://genii.teamtailor.com/jobs/2621518-it-security-officer-m-w-d/applications/new",
+                "careersite-job-apply-iframe-url": "https://genii.teamtailor.com/jobs/2621518-it-security-officer-m-w-d/applications/new?iframe=true",
+                "self": "https://api.teamtailor.com/v1/jobs/2621518"
+            },
+            "attributes": {
+                "apply-button-text": "",
+                "body": "<p>The GENII Software Group offers leading, industry-specific software solutions and services explicitly developed for the needs of medium-sized companies and public administrations. With its industry expertise and personal customer relationships, the group is a trusted partner and expert advisor to its customers. It supports them in the digitization of core processes.</p><p>GENII consists of five business units focused on specific industries:</p><p>Manufacturing, Retail, Wholesale and Distribution, Public Administration, and Laboratories. Their industry expertise is primarily available to European customers, particularly in Germany, Austria and Switzerland (DACH), Scandinavia, the Benelux countries, the United Kingdom and Italy.</p><p>Today, more than 2,400 employees work for the GENII Software Group at more than 20 locations in Europe.</p><p> </p><p>For the GENII Group we are looking for an IT Security Officer (m/f/d) starting as soon as possible. You will be responsible for the group-wide security processes of our internal applications and systems and report directly to the GENII management (CTO).</p><p>Your tasks:</p><p>You advise the management of the GENII business units on all issues related to IT security and information security and report regularly on the current status.<br>The security officers of the GENII companies report directly to you.<br>You initiate and coordinate concrete measures to improve information security. This includes regular external penetration tests.<br>You control the implementation, evaluate the results and derive improvement measures together with your team.<br>Your tasks also include the validation of IT solutions from third-party providers (e.g. cloud services) with regard to their compliance with GENII IT security guidelines.<br>You lead the IT Security Council in the GENII Group, where existing ITSecurity processes are further developed and incidents are discussed.<br>Furthermore, you ensure that awareness and training measures for employees are carried out.<br>In addition, the supports the responsible persons in emergency/risk management.</p><p>Your skills:</p><p>Successfully completed studies in computer science, information security, business informatics or comparable training.<br>Broad IT knowledge around common IT systems, networks, firewalls, M365, cloud security, etc. to be accepted as a confident contact person within GENII.<br>Good knowledge of IT threats, attack patterns and best practices as well as common standards, laws and regulations. Relevant certifications are a plus.<br>Very good conceptual skills, creativity and a results-oriented approach.<br>Enjoy working with different teams of developers in the German and European environment.<br>Confident appearance, target group oriented communication skills and the ability to present complex issues in an understandable way.<br>Strong emotional and social skills that enable you to lead teams to success.<br>A good command of English.</p><p> </p><p>You can expect:</p><p>An exciting and broad range of tasks within flat hierarchies in a high-growth environment with numerous opportunities to shape your own career.<br>An optimal and individual opportunity for further development<br>Open corporate communication characterized by a “Duz” culture<br>30 days annual vacation, flexible working hours with the possibility of mobile working and much more…</p><p> </p><p>Of course, we don’t want to tell you everything in this job posting. In addition to the task and offer mentioned above, there are other exciting things to tell you.</p><p> </p><p>If we have piqued your interest and you would like to know more details, apply now!</p><p> </p><p>We are looking forward to your application, which you kindly include your salary expectations as well as your earliest possible starting date.</p><p> </p><p>GSG GENII Software Group GmbH</p><p>Antonia Schmidt</p><p>Personnel Officer</p><p>Josef-Lammerting-Allee 20-22 – 50933 Cologne, Germany</p><p> </p><p>T +49 221 37659-420 M +49 151 15935500 antonia.schmidt@gus-group.com</p><p>The GENII Software Group offers leading, industry-specific software solutions and services explicitly developed for the needs of medium-sized companies and public administrations. With its industry expertise and personal customer relationships, the group is a trusted partner and expert advisor to its customers. It supports them in the digitization of core processes.</p><p>GENII consists of five business units focused on specific industries:</p><p>Manufacturing, Retail, Wholesale and Distribution, Public Administration, and Laboratories. Their industry expertise is primarily available to European customers, particularly in Germany, Austria and Switzerland (DACH), Scandinavia, the Benelux countries, the United Kingdom and Italy.</p><p>Today, more than 2,400 employees work for the GENII Software Group at more than 20 locations in Europe.</p><p> </p><p>For the GENII Group we are looking for an IT Security Officer (m/f/d) starting as soon as possible. You will be responsible for the group-wide security processes of our internal applications and systems and report directly to the GENII management (CTO).</p><p>Your tasks:</p><p>You advise the management of the GENII business units on all issues related to IT security and information security and report regularly on the current status.<br>The security officers of the GENII companies report directly to you.<br>You initiate and coordinate concrete measures to improve information security. This includes regular external penetration tests.<br>You control the implementation, evaluate the results and derive improvement measures together with your team.<br>Your tasks also include the validation of IT solutions from third-party providers (e.g. cloud services) with regard to their compliance with GENII IT security guidelines.<br>You lead the IT Security Council in the GENII Group, where existing ITSecurity processes are further developed and incidents are discussed.<br>Furthermore, you ensure that awareness and training measures for employees are carried out.<br>In addition, the supports the responsible persons in emergency/risk management.</p><p>Your skills:</p><p>Successfully completed studies in computer science, information security, business informatics or comparable training.<br>Broad IT knowledge around common IT systems, networks, firewalls, M365, cloud security, etc. to be accepted as a confident contact person within GENII.<br>Good knowledge of IT threats, attack patterns and best practices as well as common standards, laws and regulations. Relevant certifications are a plus.<br>Very good conceptual skills, creativity and a results-oriented approach.<br>Enjoy working with different teams of developers in the German and European environment.<br>Confident appearance, target group oriented communication skills and the ability to present complex issues in an understandable way.<br>Strong emotional and social skills that enable you to lead teams to success.<br>A good command of English.</p><p> </p><p>You can expect:</p><p>An exciting and broad range of tasks within flat hierarchies in a high-growth environment with numerous opportunities to shape your own career.<br>An optimal and individual opportunity for further development<br>Open corporate communication characterized by a “Duz” culture<br>30 days annual vacation, flexible working hours with the possibility of mobile working and much more…</p><p> </p><p>Of course, we don’t want to tell you everything in this job posting. In addition to the task and offer mentioned above, there are other exciting things to tell you.</p><p> </p><p>If we have piqued your interest and you would like to know more details, apply now!</p><p> </p><p>We are looking forward to your application, which you kindly include your salary expectations as well as your earliest possible starting date.</p><p> </p><p>GSG GENII Software Group GmbH</p><p>Antonia Schmidt</p><p>Personnel Officer</p><p>Josef-Lammerting-Allee 20-22 – 50933 Cologne, Germany</p><p> </p><p>T +49 221 37659-420 M +49 151 15935500 antonia.schmidt@gus-group.com</p>",
+                "end-date": null,
+                "human-status": "published",
+                "internal": false,
+                "language-code": "en-GB",
+                "picture": null,
+                "pinned": false,
+                "start-date": null,
+                "status": "open",
+                "tags": [],
+                "title": "IT-Security-Officer (m/w/d)",
+                "internal-name": "IT-Security-Officer (m/w/d)",
+                "pitch": "",
+                "external-application-url": "",
+                "name-requirement": "optional",
+                "resume-requirement": "optional",
+                "cover-letter-requirement": "optional",
+                "phone-requirement": "optional",
+                "created-at": "2023-03-31T12:35:51.421+02:00",
+                "updated-at": "2023-11-17T18:21:12.805+01:00",
+                "sharing-image-layout": "default",
+                "mailbox": "job-e58ceff6-cd32-4b92-9db6-c1c77239a76b@inbound.teamtailor.com",
+                "remote-status": "hybrid",
+                "salary-time-unit": "monthly",
+                "min-salary": null,
+                "max-salary": null,
+                "currency": "",
+                "recruiter-email": "joao.ribeiro@iptor.com"
+            },
+            "relationships": {
+                "activities": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/activities",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/activities"
+                    }
+                },
+                "department": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/department",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/department"
+                    }
+                },
+                "role": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/role",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/role"
+                    }
+                },
+                "location": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/location",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/location"
+                    }
+                },
+                "locations": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/locations",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/locations"
+                    }
+                },
+                "regions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/regions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/regions"
+                    }
+                },
+                "user": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/user",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/user"
+                    }
+                },
+                "questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/questions"
+                    }
+                },
+                "candidates": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/candidates",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/candidates"
+                    }
+                },
+                "stages": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/stages",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/stages"
+                    }
+                },
+                "colleagues": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/colleagues",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/colleagues"
+                    }
+                },
+                "team-memberships": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/team-memberships",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/team-memberships"
+                    }
+                },
+                "picked-questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/picked-questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/picked-questions"
+                    }
+                },
+                "requisition": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/requisition",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/requisition"
+                    }
+                },
+                "custom-fields": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/custom-fields",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/custom-fields"
+                    }
+                },
+                "custom-field-values": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/custom-field-values",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/custom-field-values"
+                    }
+                },
+                "team": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621518/relationships/team",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621518/team"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2621511",
+            "type": "jobs",
+            "links": {
+                "careersite-job-url": "https://genii.teamtailor.com/en-GB/jobs/2621511-group-treasurer-m-w-d",
+                "careersite-job-apply-url": "https://genii.teamtailor.com/jobs/2621511-group-treasurer-m-w-d/applications/new",
+                "careersite-job-apply-iframe-url": "https://genii.teamtailor.com/jobs/2621511-group-treasurer-m-w-d/applications/new?iframe=true",
+                "self": "https://api.teamtailor.com/v1/jobs/2621511"
+            },
+            "attributes": {
+                "apply-button-text": "",
+                "body": "<p>The GENII Software Group provides leading, industry-specific software solutions and services that have been explicitly needs of mid sized companies and public administrations. GENII consists of five business units specific industries: Manufacturing, Retail, Wholesale and Distribution, Public Administration, and Laboratories.</p><p>Their industry expertise is primarily available to European customers, particularly in Germany, Austria and Switzerland (DACH), Scandinavia, the Benelux countries, Great Britain and Italy. Today, more than 2,400 employees work for GENII Software Group at more than 20 locations in Europe.</p><p>The Genii Group was formed in early 2022 through the merger of a number of successful software companies. The group is growing rapidly through a combination of organic growth, mergers and acquisitions (10 transactions in 2022). The formation of the Group has resulted in the need to create all the appropriate Group functions, including Group Finance and Treasury. A key position will be an experienced Group Treasurer to join a small, energetic team at HQ to support the Group’s growth plans and build a high performing treasury department.</p><p>Accordingly, we are looking for a full-time position at our Munich, Cologne, Hamburg or remote locations as soon as possible.</p><p> </p><p><strong>Your role:</strong></p><p>– Lead and develop the Group Treasury functions. This includes the effective management of the Group’s liquidity and funding, the implementation of new policies, systems and processes, and the management of foreign exchange rates and interest rates.</p><p>– In addition, the Treasurer will collaborate with the CFO and the Head of Group Controlling and manage our key financial stakeholders (shareholders and banks). The challenges are composed as follows:</p><ul>\n<li>Group-wide cash management and the optimization</li>\n<li>Implementing a group-wide cash pooling arrangement with the designated bank(s).</li>\n<li>Minimizing “idle” cash across the group and optimizing returns on excess cash balances</li>\n<li>Manage intra-group funding and liquidity of the group’s business units</li>\n</ul><p>– Implementation of group-wide treasury systems and processes</p><ul>\n<li>Project management of the implementation of a new Group-wide treasury management system</li>\n<li>Timely implementation of short- and medium-term cash forecasting processes</li>\n</ul><p>– Financing requirements of the Group and the business units</p><ul>\n<li>Optimization of the Group’s financing structure and support in negotiating credit facilities</li>\n<li>Monitoring and compliance with all financial covenants and bank requirements</li>\n<li>Working with the Group CFO and the Head of Group Controlling to determine future financing requirements</li>\n<li>Improve the treasury performance of the business units</li>\n<li>Work closely with business unit FDs to identify specific areas for treasury improvement including: cash and working capital management, liquidity planning, and foreign exchange management</li>\n<li>Support the ongoing accounting/reporting activities of the Group Finance team.</li>\n</ul><p> </p><p><strong>Your Skills:</strong></p><p>– A successfully completed degree (Bachelor/Master) ideally with a focus on Finance and Accounting and/or Financing.</p><p>– A proven track record as Group Treasurer in a complex international group, whereby significant improvements to treasury functions have been led and implemented by you.</p><p>– Ideally extensive experience in both private equity and leveraged structures and also have extensive knowledge of banking in Germany.</p><p>– Very good written and spoken English and German skills.</p><p>– Ability to work effectively in a fast-paced environment, combined with an understanding of how to develop and implement best practice business processes</p><p>– Structured thinking and good decision making skills, combined with the flexibility and ability to work with others to achieve results</p><p>– A strong personal drive, combined with the ability to inspire, align and empower others to achieve results.</p><p> </p><p><strong>You can expect:</strong></p><p>– An exciting and broad range of responsibilities within flat hierarchies in a high-growth environment with numerous<br>creative opportunities</p><p>– An optimal and individual opportunity for further development</p><p>– Open corporate communication characterized by a “Duz” culture</p><p>– 30 days annual leave, flexible working hours with the possibility of mobile working and much more…</p><p>Of course, we don’t want to tell you everything in this job posting. In addition to the task and offer mentioned above, there are other exciting things to tell you. If we have piqued your interest and you would like to know more details, apply now!</p><p>We look forward to receiving your application, which you are kindly requested to include your salary expectations and earliest possible starting date. For further information, please visit our homepage www.gsg-genii.com.</p><p> </p>",
+                "end-date": null,
+                "human-status": "published",
+                "internal": false,
+                "language-code": "en-GB",
+                "picture": null,
+                "pinned": false,
+                "start-date": null,
+                "status": "open",
+                "tags": [],
+                "title": "Group Treasurer (m/w/d)",
+                "internal-name": "Group Treasurer (m/w/d)",
+                "pitch": "",
+                "external-application-url": "",
+                "name-requirement": "optional",
+                "resume-requirement": "optional",
+                "cover-letter-requirement": "optional",
+                "phone-requirement": "optional",
+                "created-at": "2023-03-31T12:34:08.101+02:00",
+                "updated-at": "2023-11-17T18:21:35.671+01:00",
+                "sharing-image-layout": "default",
+                "mailbox": "job-00054915-965c-43d6-b636-f667c186ff78@inbound.teamtailor.com",
+                "remote-status": "hybrid",
+                "salary-time-unit": "monthly",
+                "min-salary": null,
+                "max-salary": null,
+                "currency": "",
+                "recruiter-email": "joao.ribeiro@iptor.com"
+            },
+            "relationships": {
+                "activities": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/activities",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/activities"
+                    }
+                },
+                "department": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/department",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/department"
+                    }
+                },
+                "role": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/role",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/role"
+                    }
+                },
+                "location": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/location",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/location"
+                    }
+                },
+                "locations": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/locations",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/locations"
+                    }
+                },
+                "regions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/regions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/regions"
+                    }
+                },
+                "user": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/user",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/user"
+                    }
+                },
+                "questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/questions"
+                    }
+                },
+                "candidates": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/candidates",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/candidates"
+                    }
+                },
+                "stages": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/stages",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/stages"
+                    }
+                },
+                "colleagues": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/colleagues",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/colleagues"
+                    }
+                },
+                "team-memberships": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/team-memberships",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/team-memberships"
+                    }
+                },
+                "picked-questions": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/picked-questions",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/picked-questions"
+                    }
+                },
+                "requisition": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/requisition",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/requisition"
+                    }
+                },
+                "custom-fields": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/custom-fields",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/custom-fields"
+                    }
+                },
+                "custom-field-values": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/custom-field-values",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/custom-field-values"
+                    }
+                },
+                "team": {
+                    "links": {
+                        "self": "https://api.teamtailor.com/v1/jobs/2621511/relationships/team",
+                        "related": "https://api.teamtailor.com/v1/jobs/2621511/team"
+                    }
+                }
+            }
+        }
+    ],
+    "meta": {
+        "texts": {
+            "all-remote-statuses": "All remote statuses",
+            "none": "No Remote Work",
+            "temporary": "Temporarily Remote",
+            "hybrid": "Hybrid Remote",
+            "fully": "Fully Remote",
+            "prev": "Previous",
+            "next": "Next"
+        },
+        "record-count": 3,
+        "page-count": 1
+    },
+    "links": {
+        "first": "https://api.teamtailor.com/v1/jobs?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+        "last": "https://api.teamtailor.com/v1/jobs?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+    }
+}

@@ -1,0 +1,30 @@
+#coswift-json-output {
+    white-space: pre; /* Maintains text formatting */
+    background-color: #f4f4f4; /* Light grey background */
+    border: 1px solid #ddd; /* Light border */
+    padding: 10px; /* Some padding */
+    margin-top: 15px; /* Space above the div */
+    overflow: auto; /* Adds a scrollbar if necessary */
+    max-height: 400px; /* Set a maximum height for the container */
+}
+#coswift-json-output-container {
+    overflow: auto; /* Adds a scrollbar if the content overflows */
+    max-height: 400px; /* Set a maximum height for the container */
+    background-color: #f4f4f4; /* Light grey background */
+    border: 1px solid #ddd; /* Light border */
+    padding: 10px; /* Some padding */
+    margin-top: 15px; /* Space above the div */
+    white-space: pre-wrap; /* Maintains text formatting and wraps text */
+    word-wrap: break-word; /* Prevents long text from overflowing */
+}
+.wrap .button {
+    margin-right: 10px; /* Adds spacing between buttons */
+}
+/* This targets the input within the settings page of your plugin */
+.wrap .form-table th {
+    padding-right: 20px; /* Adjust this value as needed */
+}
+
+.wrap .form-table input[type="text"] {
+    min-width: 500px; /* Set a min-width that can contain 40 characters */
+}
