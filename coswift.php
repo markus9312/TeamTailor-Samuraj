@@ -2,8 +2,9 @@
 /**
  * Plugin Name: CoSwift
  * Description: Integration with TeamTailor for WordPress.
- * Version: 1.0
- * Author: Your Name
+ * Version: 0.3
+ * Author: Jonatan Jansson
+ * URI: https://github.com/dotMavriQ/CoSwift
  */
 
 // Ensure WordPress is loaded
@@ -23,7 +24,7 @@ function coswift_register_settings() {
     register_setting('coswift-settings-group', 'coswift_api_token');
 }
 add_action('admin_init', 'coswift_register_settings');
-
+// 
 function coswift_settings_page() {
     ?>
     <div class="wrap">
