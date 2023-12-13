@@ -126,7 +126,6 @@ function coswift_job_details_callback($post) {
     echo '<input type="text" id="coswift_job_type" name="coswift_job_type" value="' . esc_attr($coswift_job_type) . '" size="25" />';
 }
 function coswift_save_job_metaboxes($post_id) {
-    // Check nonce, autosave, and user permissions
     if (!isset($_POST['coswift_job_nonce']) || !wp_verify_nonce($_POST['coswift_job_nonce'], plugin_basename(__FILE__))) {
         return $post_id;
     }
@@ -136,8 +135,6 @@ function coswift_save_job_metaboxes($post_id) {
     if ('coswift_jobs' != $_POST['post_type'] || !current_user_can('edit_post', $post_id)) {
         return $post_id;
     }
-
-    // Save or update the meta field in the database
     if (isset($_POST['coswift_job_id'])) {
         update_post_meta($post_id, '_coswift_job_id', sanitize_text_field($_POST['coswift_job_id']));
     }
@@ -146,3 +143,32 @@ function coswift_save_job_metaboxes($post_id) {
     }
 }
 add_action('save_post', 'coswift_save_job_metaboxes');
+
+function coswift_jobs_add_id_column( $columns ) {
+    $columns['job_id'] = 'Job ID';
+    return $columns;
+}
+add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_add_id_column' );
+
+function coswift_jobs_id_column_content( $column_name, $post_id ) {
+    if ( 'job_id' == $column_name ) {
+        $job_id = get_post_meta( $post_id, '_coswift_job_id', true );
+        echo esc_html($job_id);
+    }
+}
+add_action( 'manage_coswift_jobs_posts_custom_column', 'coswift_jobs_id_column_content', 10, 2 );
+
+function coswift_jobs_columns_order( $columns ) {
+    $new_order = [];
+    foreach($columns as $key => $value) {
+        if ($key == 'title') {
+            $new_order[$key] = $value;
+            $new_order['job_id'] = 'Job ID';
+        } else if ($key != 'date') {
+            $new_order[$key] = $value;
+        }
+    }
+    $new_order['date'] = 'Date';
+    return $new_order;
+}
+add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_columns_order', 15 );
