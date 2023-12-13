@@ -97,3 +97,52 @@ function coswift_register_custom_post_type() {
     ]);
 }
 add_action('init', 'coswift_register_custom_post_type');
+
+function coswift_add_job_metaboxes() {
+    add_meta_box(
+        'coswift_job_details',           // Unique ID for the metabox
+        'Job Details',                   // Title of the metabox
+        'coswift_job_details_callback',  // Callback function
+        'coswift_jobs',                  // Post type
+        'normal',                        // Context (where on the screen)
+        'high'                           // Priority (order on the screen)
+    );
+}
+add_action('add_meta_boxes', 'coswift_add_job_metaboxes');
+
+function coswift_job_details_callback($post) {
+    // Add nonce for security and authentication
+    wp_nonce_field(plugin_basename(__FILE__), 'coswift_job_nonce');
+    
+    // Retrieve the current values for your custom meta fields
+    $coswift_job_id = get_post_meta($post->ID, '_coswift_job_id', true);
+    $coswift_job_type = get_post_meta($post->ID, '_coswift_job_type', true);
+
+    // Metabox HTML
+    echo '<label for="coswift_job_id">Job ID:</label>';
+    echo '<input type="text" id="coswift_job_id" name="coswift_job_id" value="' . esc_attr($coswift_job_id) . '" size="25" />';
+
+    echo '<label for="coswift_job_type">Job Type:</label>';
+    echo '<input type="text" id="coswift_job_type" name="coswift_job_type" value="' . esc_attr($coswift_job_type) . '" size="25" />';
+}
+function coswift_save_job_metaboxes($post_id) {
+    // Check nonce, autosave, and user permissions
+    if (!isset($_POST['coswift_job_nonce']) || !wp_verify_nonce($_POST['coswift_job_nonce'], plugin_basename(__FILE__))) {
+        return $post_id;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+    if ('coswift_jobs' != $_POST['post_type'] || !current_user_can('edit_post', $post_id)) {
+        return $post_id;
+    }
+
+    // Save or update the meta field in the database
+    if (isset($_POST['coswift_job_id'])) {
+        update_post_meta($post_id, '_coswift_job_id', sanitize_text_field($_POST['coswift_job_id']));
+    }
+    if (isset($_POST['coswift_job_type'])) {
+        update_post_meta($post_id, '_coswift_job_type', sanitize_text_field($_POST['coswift_job_type']));
+    }
+}
+add_action('save_post', 'coswift_save_job_metaboxes');
