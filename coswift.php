@@ -11,8 +11,8 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Include other PHP files
-include_once(plugin_dir_path(__FILE__) . 'Button_Form_SaveToken.php');
-include_once(plugin_dir_path(__FILE__) . 'Button_TestAPI.php');
+include_once(__DIR__ . '/Button_Form_SaveToken.php');
+include_once(__DIR__ . '/Button_TestAPI.php');
 
 // Add plugin to the admin menu
 function coswift_add_to_menu() {
