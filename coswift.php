@@ -172,3 +172,47 @@ function coswift_jobs_columns_order( $columns ) {
     return $new_order;
 }
 add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_columns_order', 15 );
+function coswift_jobs_shortcode($atts) {
+    // Query for 'coswift_jobs' posts
+    $args = array(
+        'post_type' => 'coswift_jobs',
+        'posts_per_page' => -1,
+    );
+    $jobs_query = new WP_Query($args);
+
+    // Start output buffering
+    ob_start();
+
+    // Check if we have posts
+    if ($jobs_query->have_posts()) {
+        echo '<div class="coswift-jobs-listing">';
+        while ($jobs_query->have_posts()) {
+            $jobs_query->the_post();
+            $post_id = get_the_ID();
+            echo '<div class="coswift-job">';
+            echo '<h2>' . get_the_title() . '</h2>';
+            
+            // Display all custom fields in divs
+            $custom_fields = get_post_custom($post_id);
+            foreach ($custom_fields as $key => $value) {
+                if (substr($key, 0, 1) !== '_') { // Skip hidden custom fields
+                    echo '<div class="coswift-job-meta"><strong>' . esc_html($key) . ':</strong> ' . esc_html($value[0]) . '</div>';
+                }
+            }
+
+            // Link to the individual post
+            echo '<a href="' . get_permalink($post_id) . '" class="coswift-job-link">Read More</a>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo '<p>No job listings found.</p>';
+    }
+
+    // Reset post data
+    wp_reset_postdata();
+
+    // Return the buffer contents
+    return ob_get_clean();
+}
+add_shortcode('coswiftjobs', 'coswift_jobs_shortcode');

@@ -33,9 +33,9 @@ function coswift_sync_teamtailor() {
     foreach ($jobs['data'] as $job) {
         $job_id = $job['id'];
         $post_id = coswift_get_post_id_by_job_id($job_id);
-
         $job_title = $job['attributes']['title'];
         $job_body = $job['attributes']['body'];
+        $remote_status = $job['attributes']['remote-status']; // Get remote status
         $job_apply_iframe_url = $job['links']['careersite-job-apply-iframe-url'] ?? '';
 
         $post_content = $job_body;
@@ -49,7 +49,8 @@ function coswift_sync_teamtailor() {
             'post_content' => $post_content,
             'post_status' => 'publish',
             'meta_input' => [
-                '_coswift_job_id' => $job_id,
+                '_coswift_job_id' => $job_id, // Internal use
+                'remote_status' => $remote_status, // Non-hidden field
             ],
         ];
 
@@ -57,7 +58,7 @@ function coswift_sync_teamtailor() {
             $post_data['ID'] = $post_id;
             wp_update_post($post_data);
         } else {
-            wp_insert_post($post_data);
+            $post_id = wp_insert_post($post_data);
         }
 
         if (($key = array_search($job_id, $existing_ids)) !== false) {
