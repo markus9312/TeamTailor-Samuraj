@@ -58,8 +58,7 @@ function coswift_test_api_call() {
         return;
     }
 
-    // cURL request to TeamTailor API
-    $url = "https://api.teamtailor.com/v1/jobs"; // Replace with the actual API URL
+    $url = "https://api.teamtailor.com/v1/jobs";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -72,11 +71,20 @@ function coswift_test_api_call() {
     if ($error = curl_error($ch)) {
         echo "<div>cURL Error: {$error}</div>";
     } else {
-        // Decode and then re-encode the JSON response with pretty print and unescaped slashes
-        $decodedResponse = json_decode($response);
-        $prettyResponse = json_encode($decodedResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $decodedResponse = json_decode($response, true); // Decode as an array
 
-        // Output the formatted JSON in the div
+        // Loop through each job and fetch details for specific relationships
+        foreach ($decodedResponse['data'] as &$job) {
+            if (isset($job['id'])) {
+                $jobId = $job['id'];
+                $job['departments_data'] = fetchTeamtailorData($api_key, "jobs/$jobId/department");
+                $job['locations_data'] = fetchTeamtailorData($api_key, "jobs/$jobId/locations");
+                $job['roles_data'] = fetchTeamtailorData($api_key, "jobs/$jobId/role");
+            }
+        }
+
+        // Print the modified response with additional relationship data
+        $prettyResponse = json_encode($decodedResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         echo '<div id="coswift-api-response" style="white-space: pre; max-height: 400px; overflow-y: scroll; background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; margin-top: 15px;">';
         echo htmlspecialchars($prettyResponse);
         echo '</div>';
@@ -84,6 +92,29 @@ function coswift_test_api_call() {
 
     curl_close($ch);
 }
+
+function fetchTeamtailorData($api_key, $endpoint) {
+    $url = "https://api.teamtailor.com/v1/$endpoint";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "Authorization: Token token={$api_key}",
+        "X-Api-Version: 20210218",
+        "Content-Type: application/json"
+    ));
+
+    $response = curl_exec($ch);
+    if (!curl_error($ch)) {
+        curl_close($ch);
+        return json_decode($response, true);
+    } else {
+        $error = curl_error($ch);
+        curl_close($ch);
+        return "Error: $error";
+    }
+}
+
+
 function coswift_register_custom_post_type() {
     register_post_type('coswift_jobs', [
         'labels' => [
