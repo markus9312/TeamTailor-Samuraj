@@ -247,3 +247,38 @@ function coswift_jobs_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('coswiftjobs', 'coswift_jobs_shortcode');
+// ACF Override
+add_action('admin_head', function () {
+    global $post_type;
+    if ('coswift_jobs' == $post_type) {
+        add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+    }
+});
+// Register with Elementor
+add_action('elementor_pro/init', function() {
+    if ( ! function_exists('ElementorPro\Modules\DynamicTags\Module::instance') ) {
+        return;
+    }
+
+    $dynamic_tags = ElementorPro\Modules\DynamicTags\Module::instance();
+
+    $dynamic_tags->register_tag(new class extends \ElementorPro\Modules\DynamicTags\Tags\Base_Data_Tag {
+        public function get_name() {
+            return 'coswift_jobs_custom_field';
+        }
+
+        public function get_title() {
+            return __('CoSwift Jobs Custom Field', 'text-domain');
+        }
+
+        public function get_categories() {
+            return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
+        }
+
+        public function get_value( array $options = [] ) {
+            global $post;
+            // Replace 'your_custom_field' with the actual name of your custom field
+            return get_post_meta($post->ID, 'your_custom_field', true);
+        }
+    });
+});
