@@ -248,12 +248,53 @@ function coswift_jobs_shortcode($atts) {
 }
 add_shortcode('coswiftjobs', 'coswift_jobs_shortcode');
 // ACF Override
-add_action('admin_init', function () {
-    global $post_type;
-    if ('coswift_jobs' == $post_type) {
-        add_filter('acf/settings/remove_wp_meta_box', '__return_false', 20);
+add_action('init', function() {
+    // Check if ACF is active
+    if (function_exists('acf_add_local_field_group')) {
+
+        // Define the ACF field group
+        acf_add_local_field_group(array(
+            'key' => 'group_coswift_jobs',
+            'title' => 'CoSwift Jobs Fields',
+            'fields' => array(
+                array(
+                    'key' => 'field_coswift_job_id',
+                    'label' => 'Job ID',
+                    'name' => '_coswift_job_id',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_coswift_departments',
+                    'label' => 'Departments',
+                    'name' => 'departments',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_coswift_locations',
+                    'label' => 'Locations',
+                    'name' => 'locations',
+                    'type' => 'text',
+                ),
+                array(
+                    'key' => 'field_coswift_roles',
+                    'label' => 'Roles',
+                    'name' => 'roles',
+                    'type' => 'text',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'coswift_jobs',
+                    ),
+                ),
+            ),
+        ));
     }
-}, 20);
+});
+
 // Register with Elementor
 add_action('elementor_pro/init', function() {
     if ( ! function_exists('ElementorPro\Modules\DynamicTags\Module::instance') ) {
