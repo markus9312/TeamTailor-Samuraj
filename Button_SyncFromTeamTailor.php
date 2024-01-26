@@ -3,21 +3,19 @@
 // Ensure WordPress is loaded
 defined('ABSPATH') or die('No script kiddies please!');
 
-// Assuming fetchTeamtailorData is defined in coswift.php
-// and coswift.php is included before this file
-
 // Function to extract the department name
 function extractDepartmentName($departmentData) {
     return isset($departmentData['data']['attributes']['name']) ? $departmentData['data']['attributes']['name'] : '';
 }
 
-// Function to extract names from a list structure
+// Function to extract names from a list structure, ensuring clean formatting
 function extractNames($data) {
     if (isset($data['data']) && is_array($data['data'])) {
-        $names = array_map(function ($item) {
+        $names = array_filter(array_map(function ($item) {
             return isset($item['attributes']['name']) ? $item['attributes']['name'] : '';
-        }, $data['data']);
-        return implode(', ', $names); // Concatenate names with comma separation
+        }, $data['data']));
+
+        return implode(', ', $names); // Concatenate non-empty names with comma separation
     }
     return '';
 }
@@ -26,6 +24,12 @@ function extractNames($data) {
 function fetchAndExtractRoleName($api_key, $jobId) {
     $roleData = fetchTeamtailorData($api_key, "jobs/$jobId/role");
     return isset($roleData['data']['attributes']['name']) ? $roleData['data']['attributes']['name'] : '';
+}
+
+// Function to fetch and extract the company name
+function fetchAndExtractCompanyName($api_key) {
+    $companyData = fetchTeamtailorData($api_key, "company");
+    return isset($companyData['data']['attributes']['name']) ? $companyData['data']['attributes']['name'] : '';
 }
 
 // Main function to sync data from TeamTailor
@@ -56,6 +60,9 @@ function coswift_sync_teamtailor() {
     $jobs = json_decode($response, true);
     $existing_ids = get_existing_job_ids();
 
+    // Fetch company data
+    $companyName = fetchAndExtractCompanyName($api_key);
+
     foreach ($jobs['data'] as $job) {
         $job_id = $job['id'];
         $post_id = coswift_get_post_id_by_job_id($job_id);
@@ -65,81 +72,82 @@ function coswift_sync_teamtailor() {
         // Fetch additional data
         $departmentsData = fetchTeamtailorData($api_key, "jobs/$job_id/department");
         $locationsData = fetchTeamtailorData($api_key, "jobs/$job_id/locations");
-        $roleName = fetchAndExtractRoleName($api_key, $job_id);
+        $roleName = fetchAndExtractRoleName($api_key, $job_id); // Fetch role name
+
         $post_content = $job_body;
-    $job_apply_iframe_url = $job['links']['careersite-job-apply-iframe-url'] ?? '';
-    if ($job_apply_iframe_url) {
-        $post_content .= "\n\n<iframe src='" . esc_url($job_apply_iframe_url) . "' width='100%' height='600' frameborder='0'></iframe>";
+        $job_apply_iframe_url = $job['links']['careersite-job-apply-iframe-url'] ?? '';
+        if ($job_apply_iframe_url) {
+            $post_content .= "\n\n<iframe src='" . esc_url($job_apply_iframe_url) . "' width='100%' height='600' frameborder='0'></iframe>";
+        }
+
+        $post_data = [
+            'post_type' => 'coswift_jobs',
+            'post_title' => $job_title,
+            'post_content' => $post_content,
+            'post_status' => 'publish',
+            'meta_input' => [
+                '_coswift_job_id' => $job_id,
+                'departments' => extractDepartmentName($departmentsData),
+                'locations' => extractNames($locationsData),
+                'roles' => $roleName, // Include the role name
+                'company' => $companyName // Include the company name
+            ],
+        ];
+
+        if ($post_id) {
+            $post_data['ID'] = $post_id;
+            wp_update_post($post_data);
+        } else {
+            $post_id = wp_insert_post($post_data);
+        }
+
+        if (($key = array_search($job_id, $existing_ids)) !== false) {
+            unset($existing_ids[$key]);
+        }
     }
 
-    $post_data = [
-        'post_type' => 'coswift_jobs',
-        'post_title' => $job_title,
-        'post_content' => $post_content,
-        'post_status' => 'publish',
-        'meta_input' => [
-            '_coswift_job_id' => $job_id,
-            'departments' => extractDepartmentName($departmentsData),
-            'locations' => extractNames($locationsData),
-            'roles' => $roleName
-        ],
-    ];
-
-    if ($post_id) {
-        $post_data['ID'] = $post_id;
-        wp_update_post($post_data);
-    } else {
-        $post_id = wp_insert_post($post_data);
+    foreach ($existing_ids as $id) {
+        $post_id = coswift_get_post_id_by_job_id($id);
+        if ($post_id) {
+            wp_delete_post($post_id, true);
+        }
     }
 
-    if (($key = array_search($job_id, $existing_ids)) !== false) {
-        unset($existing_ids[$key]);
-    }
-}
-
-foreach ($existing_ids as $id) {
-    $post_id = coswift_get_post_id_by_job_id($id);
-    if ($post_id) {
-        wp_delete_post($post_id, true);
-    }
-}
-
-echo '<div>Sync completed successfully.</div>';
+    echo '<div>Sync completed successfully.</div>';
 }
 
 // Function to get the post ID by job ID
 function coswift_get_post_id_by_job_id($job_id) {
-$query = new WP_Query([
-'post_type' => 'coswift_jobs',
-'meta_query' => [
-[
-'key' => '_coswift_job_id',
-'value' => $job_id,
-'compare' => '=',
-],
-],
-'posts_per_page' => 1,
-]);
-if ($query->have_posts()) {
-    return $query->posts[0]->ID;
-}
-return null;
-
+    $query = new WP_Query([
+        'post_type' => 'coswift_jobs',
+        'meta_query' => [
+            [
+                'key' => '_coswift_job_id',
+                'value' => $job_id,
+                'compare' => '=',
+            ],
+        ],
+        'posts_per_page' => 1,
+    ]);
+    if ($query->have_posts()) {
+        return $query->posts[0]->ID;
+    }
+    return null;
 }
 
 // Function to get existing job IDs
 function get_existing_job_ids() {
-$query = new WP_Query([
-'post_type' => 'coswift_jobs',
-'posts_per_page' => -1,
-]);
-$ids = [];
-foreach ($query->posts as $post) {
-    $ids[] = get_post_meta($post->ID, '_coswift_job_id', true);
-}
-return $ids;
-
+    $query = new WP_Query([
+        'post_type' => 'coswift_jobs',
+        'posts_per_page' => -1,
+    ]);
+    $ids = [];
+    foreach ($query->posts as $post) {
+        $ids[] = get_post_meta($post->ID, '_coswift_job_id', true);
+    }
+    return $ids;
 }
 
 // Execute the sync function
 coswift_sync_teamtailor();
+?>

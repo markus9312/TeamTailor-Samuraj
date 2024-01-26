@@ -52,6 +52,7 @@ function coswift_settings_page() {
 }
 
 function coswift_test_api_call() {
+    // Removed header function call
     $api_key = get_option('coswift_api_token');
     if (!$api_key) {
         echo '<div>API Key is not set.</div>';
@@ -84,9 +85,9 @@ function coswift_test_api_call() {
         }
 
         // Print the modified response with additional relationship data
-        $prettyResponse = json_encode($decodedResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $prettyResponse = json_encode($decodedResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); // Add JSON_UNESCAPED_UNICODE
         echo '<div id="coswift-api-response" style="white-space: pre; max-height: 400px; overflow-y: scroll; background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; margin-top: 15px;">';
-        echo htmlspecialchars($prettyResponse);
+        echo htmlspecialchars($prettyResponse, ENT_QUOTES, 'UTF-8'); // Ensure htmlspecialchars uses UTF-8
         echo '</div>';
     }
 
@@ -155,6 +156,9 @@ function coswift_job_details_callback($post) {
 
     echo '<label for="coswift_job_type">Job Type:</label>';
     echo '<input type="text" id="coswift_job_type" name="coswift_job_type" value="' . esc_attr($coswift_job_type) . '" size="25" />';
+    echo '<label for="company">Company:</label>';
+    echo '<input type="text" id="company" name="company" value="' . esc_attr(get_post_meta($post->ID, 'company', true)) . '" size="25" />';
+
 }
 function coswift_save_job_metaboxes($post_id) {
     if (!isset($_POST['coswift_job_nonce']) || !wp_verify_nonce($_POST['coswift_job_nonce'], plugin_basename(__FILE__))) {
@@ -172,6 +176,9 @@ function coswift_save_job_metaboxes($post_id) {
     if (isset($_POST['coswift_job_type'])) {
         update_post_meta($post_id, '_coswift_job_type', sanitize_text_field($_POST['coswift_job_type']));
     }
+    if (isset($_POST['company'])) {
+        update_post_meta($post_id, 'company', sanitize_text_field($_POST['company']));
+    }
 }
 add_action('save_post', 'coswift_save_job_metaboxes');
 
@@ -188,6 +195,21 @@ function coswift_jobs_id_column_content( $column_name, $post_id ) {
     }
 }
 add_action( 'manage_coswift_jobs_posts_custom_column', 'coswift_jobs_id_column_content', 10, 2 );
+
+function coswift_jobs_add_company_column($columns) {
+    $columns['company'] = 'Company';
+    return $columns;
+}
+add_filter('manage_coswift_jobs_posts_columns', 'coswift_jobs_add_company_column');
+
+function coswift_jobs_company_column_content($column_name, $post_id) {
+    if ($column_name == 'company') {
+        $company = get_post_meta($post_id, 'company', true);
+        echo esc_html($company);
+    }
+}
+add_action('manage_coswift_jobs_posts_custom_column', 'coswift_jobs_company_column_content', 10, 2);
+
 
 function coswift_jobs_columns_order( $columns ) {
     $new_order = [];
