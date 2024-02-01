@@ -125,10 +125,11 @@ function coswift_register_custom_post_type() {
         'public' => true,
         'has_archive' => true,
         'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
-        // Add other necessary arguments as needed
+        'rewrite' => ['slug' => 'jobs'], // Rewrite the slug to 'jobs'
     ]);
 }
 add_action('init', 'coswift_register_custom_post_type');
+
 
 function coswift_add_job_metaboxes() {
     add_meta_box(

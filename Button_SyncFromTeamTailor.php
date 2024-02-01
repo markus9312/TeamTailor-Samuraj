@@ -119,7 +119,6 @@ function coswift_sync_teamtailor() {
 
     $jobs = json_decode($response, true);
     $existing_ids = get_existing_job_ids();
-
     $companyName = fetchAndExtractCompanyName($api_key);
 
     foreach ($jobs['data'] as $job) {
