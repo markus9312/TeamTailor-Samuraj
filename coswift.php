@@ -304,6 +304,13 @@ add_action('init', function() {
                     'name' => 'roles',
                     'type' => 'text',
                 ),
+                // Simplified Countries field
+                array(
+                    'key' => 'field_coswift_countries',
+                    'label' => 'Countries',
+                    'name' => 'countries',
+                    'type' => 'text',
+                ),
             ),
             'location' => array(
                 array(
@@ -317,6 +324,8 @@ add_action('init', function() {
         ));
     }
 });
+
+
 
 // Register with Elementor
 add_action('elementor_pro/init', function() {
