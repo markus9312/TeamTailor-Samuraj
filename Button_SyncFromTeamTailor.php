@@ -136,7 +136,7 @@ function coswift_sync_teamtailor() {
         $post_content = $job_body;
         $job_apply_iframe_url = $job['links']['careersite-job-apply-iframe-url'] ?? '';
         if ($job_apply_iframe_url) {
-            $post_content .= "\n\n<iframe src='" . esc_url($job_apply_iframe_url) . "' width='100%' height='600' frameborder='0'></iframe>";
+            $post_content .= "\n\n<iframe src='" . esc_url($job_apply_iframe_url) . "' style='width: 100%; height: 800px' frameborder='0'></iframe>";
         }
 
         $post_data = [

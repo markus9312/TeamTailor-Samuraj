@@ -7,6 +7,8 @@
  * URI: https://github.com/dotMavriQ/CoSwift
  */
 
+// Borås: https://www.youtube.com/watch?v=JyAFbGCsJtY
+
 // Ensure WordPress is loaded
 defined('ABSPATH') or die('No script kiddies please!');
 
@@ -258,7 +260,6 @@ function coswift_jobs_shortcode($atts) {
             <?php endforeach; ?>
         </select>
         <input type="submit" value="Filter">
-        <!-- <?php require __DIR__ . '/lillavaen.txt'  ?> -->
     </form>
     <?php
 
