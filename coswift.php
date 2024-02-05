@@ -224,19 +224,76 @@ function coswift_jobs_columns_order( $columns ) {
     }
     $new_order['date'] = 'Date';
     return $new_order;
+    
 }
 add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_columns_order', 15 );
 function coswift_jobs_shortcode($atts) {
-    // Query for 'coswift_jobs' posts
+    global $wp;
+    ob_start(); // Start output buffering
+
+    // Dynamically fetch unique meta values for filters
+    $unique_departments = get_unique_meta_values('departments');
+    $unique_locations = get_unique_meta_values('locations');
+    $unique_roles = get_unique_meta_values('roles');
+
+    // Display dropdown filters
+    ?>
+    <form action="<?php echo esc_url(home_url($wp->request)); ?>" method="get">
+        <select name="department">
+            <option value="">All Departments</option>
+            <?php foreach ($unique_departments as $department): ?>
+                <option value="<?php echo esc_attr($department); ?>" <?php selected(isset($_GET['department']) ? $_GET['department'] : null, $department); ?>><?php echo esc_html($department); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <select name="location">
+            <option value="">All Locations</option>
+            <?php foreach ($unique_locations as $location): ?>
+                <option value="<?php echo esc_attr($location); ?>" <?php selected(isset($_GET['location']) ? $_GET['location'] : null, $location); ?>><?php echo esc_html($location); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <select name="role">
+            <option value="">All Roles</option>
+            <?php foreach ($unique_roles as $role): ?>
+                <option value="<?php echo esc_attr($role); ?>" <?php selected(isset($_GET['role']) ? $_GET['role'] : null, $role); ?>><?php echo esc_html($role); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
+    <?php
+
+    // Adjust your WP_Query arguments based on the filter selections
+    $meta_query_args = []; // Initialize meta query arguments array
+    if (!empty($_GET['department'])) {
+        $meta_query_args[] = [
+            'key' => 'departments',
+            'value' => sanitize_text_field($_GET['department']),
+            'compare' => '='
+        ];
+    }
+    if (!empty($_GET['location'])) {
+        $meta_query_args[] = [
+            'key' => 'locations',
+            'value' => sanitize_text_field($_GET['location']),
+            'compare' => '='
+        ];
+    }
+    if (!empty($_GET['role'])) {
+        $meta_query_args[] = [
+            'key' => 'roles',
+            'value' => sanitize_text_field($_GET['role']),
+            'compare' => '='
+        ];
+    }
+
+    // Query for 'coswift_jobs' posts including the meta query for filtering
     $args = array(
         'post_type' => 'coswift_jobs',
         'posts_per_page' => -1,
+        'meta_query' => $meta_query_args
     );
     $jobs_query = new WP_Query($args);
 
-    // Start output buffering
-    ob_start();
-
+    // The rest of your existing shortcode logic...
     // Check if we have posts
     if ($jobs_query->have_posts()) {
         echo '<div class="coswift-jobs-listing">';
@@ -256,9 +313,9 @@ function coswift_jobs_shortcode($atts) {
 
             // Link to the individual post
             echo '<a href="' . get_permalink($post_id) . '" class="coswift-job-link">Read More</a>';
-            echo '</div>';
+            echo '</div>'; // Close .coswift-job
         }
-        echo '</div>';
+        echo '</div>'; // Close .coswift-jobs-listing
     } else {
         echo '<p>No job listings found.</p>';
     }
@@ -267,9 +324,10 @@ function coswift_jobs_shortcode($atts) {
     wp_reset_postdata();
 
     // Return the buffer contents
-    return ob_get_clean();
+    return ob_get_clean(); // Return the buffer contents
 }
 add_shortcode('coswiftjobs', 'coswift_jobs_shortcode');
+
 // ACF Override
 add_action('init', function() {
     // Check if ACF is active
@@ -374,3 +432,19 @@ $register_custom_field('locations', 'CoSwift Locations');
 $register_custom_field('roles', 'CoSwift Roles');
 
 });
+function get_unique_meta_values($meta_key) {
+    global $wpdb;
+    $meta_values = $wpdb->get_col($wpdb->prepare("
+        SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+        LEFT JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+        WHERE pm.meta_key = %s
+        AND p.post_status = 'publish'
+        AND p.post_type = 'coswift_jobs'
+        ORDER BY pm.meta_value ASC
+    ", $meta_key));
+
+    // Filter out any empty values
+    return array_filter($meta_values, function($value) {
+        return !empty($value);
+    });
+}
