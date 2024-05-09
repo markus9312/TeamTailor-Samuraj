@@ -1,6 +1,9 @@
 # TeamTailor Integrator WordPress Plugin
 
-<img src="https://img.shields.io/liberapay/goal/dotMavriQ.svg?logo=liberapay">
+<a href="https://liberapay.com/dotMavriQ/">
+    <img src="https://img.shields.io/liberapay/goal/dotMavriQ.svg?logo=liberapay">
+</a>
+
 
 ## Description
 
