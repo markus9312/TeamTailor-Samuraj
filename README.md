@@ -1,5 +1,7 @@
 # TeamTailor Integrator WordPress Plugin
 
+<img src="https://img.shields.io/liberapay/goal/dotMavriQ.svg?logo=liberapay">
+
 ## Description
 
 The TeamTailor Integrator plugin seamlessly integrates TeamTailor's recruitment services with your WordPress site, enabling you to display job listings, receive applications, and manage your recruitment process directly through your website. This plugin utilizes the TeamTailor API to offer a straightforward method for enhancing your site with powerful recruitment capabilities.
