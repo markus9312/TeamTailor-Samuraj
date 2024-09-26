@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: CoSwift
  * Description: Integration with TeamTailor for WordPress.
@@ -7,7 +8,7 @@
  * URI: https://github.com/dotMavriQ/CoSwift
  */
 
-// Borås: https://www.youtube.com/watch?v=JyAFbGCsJtY
+
 
 // Ensure WordPress is loaded
 defined('ABSPATH') or die('No script kiddies please!');
@@ -17,18 +18,21 @@ include_once(__DIR__ . '/Button_Form_SaveToken.php');
 include_once(__DIR__ . '/Button_TestAPI.php');
 
 // Add plugin to the admin menu
-function coswift_add_to_menu() {
+function coswift_add_to_menu()
+{
     add_menu_page('CoSwift Settings', 'CoSwift', 'manage_options', 'coswift', 'coswift_settings_page');
 }
 add_action('admin_menu', 'coswift_add_to_menu');
 
-function coswift_register_settings() {
+function coswift_register_settings()
+{
     register_setting('coswift-settings-group', 'coswift_api_token');
 }
 add_action('admin_init', 'coswift_register_settings');
 // 
-function coswift_settings_page() {
-    ?>
+function coswift_settings_page()
+{
+?>
     <div class="wrap">
         <h1>CoSwift Settings</h1>
         <?php coswift_save_token_form(); ?>
@@ -53,7 +57,8 @@ function coswift_settings_page() {
     }
 }
 
-function coswift_test_api_call() {
+function coswift_test_api_call()
+{
     // Removed header function call
     $api_key = get_option('coswift_api_token');
     if (!$api_key) {
@@ -96,7 +101,8 @@ function coswift_test_api_call() {
     curl_close($ch);
 }
 
-function fetchTeamtailorData($api_key, $endpoint) {
+function fetchTeamtailorData($api_key, $endpoint)
+{
     $url = "https://api.teamtailor.com/v1/$endpoint";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -118,7 +124,8 @@ function fetchTeamtailorData($api_key, $endpoint) {
 }
 
 
-function coswift_register_custom_post_type() {
+function coswift_register_custom_post_type()
+{
     register_post_type('coswift_jobs', [
         'labels' => [
             'name' => 'CoSwift Jobs',
@@ -133,7 +140,8 @@ function coswift_register_custom_post_type() {
 add_action('init', 'coswift_register_custom_post_type');
 
 
-function coswift_add_job_metaboxes() {
+function coswift_add_job_metaboxes()
+{
     add_meta_box(
         'coswift_job_details',           // Unique ID for the metabox
         'Job Details',                   // Title of the metabox
@@ -145,10 +153,11 @@ function coswift_add_job_metaboxes() {
 }
 add_action('add_meta_boxes', 'coswift_add_job_metaboxes');
 
-function coswift_job_details_callback($post) {
+function coswift_job_details_callback($post)
+{
     // Add nonce for security and authentication
     wp_nonce_field(plugin_basename(__FILE__), 'coswift_job_nonce');
-    
+
     // Retrieve the current values for your custom meta fields
     $coswift_job_id = get_post_meta($post->ID, '_coswift_job_id', true);
     $coswift_job_type = get_post_meta($post->ID, '_coswift_job_type', true);
@@ -161,9 +170,9 @@ function coswift_job_details_callback($post) {
     echo '<input type="text" id="coswift_job_type" name="coswift_job_type" value="' . esc_attr($coswift_job_type) . '" size="25" />';
     echo '<label for="company">Company:</label>';
     echo '<input type="text" id="company" name="company" value="' . esc_attr(get_post_meta($post->ID, 'company', true)) . '" size="25" />';
-
 }
-function coswift_save_job_metaboxes($post_id) {
+function coswift_save_job_metaboxes($post_id)
+{
     if (!isset($_POST['coswift_job_nonce']) || !wp_verify_nonce($_POST['coswift_job_nonce'], plugin_basename(__FILE__))) {
         return $post_id;
     }
@@ -185,27 +194,31 @@ function coswift_save_job_metaboxes($post_id) {
 }
 add_action('save_post', 'coswift_save_job_metaboxes');
 
-function coswift_jobs_add_id_column( $columns ) {
+function coswift_jobs_add_id_column($columns)
+{
     $columns['job_id'] = 'Job ID';
     return $columns;
 }
-add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_add_id_column' );
+add_filter('manage_coswift_jobs_posts_columns', 'coswift_jobs_add_id_column');
 
-function coswift_jobs_id_column_content( $column_name, $post_id ) {
-    if ( 'job_id' == $column_name ) {
-        $job_id = get_post_meta( $post_id, '_coswift_job_id', true );
+function coswift_jobs_id_column_content($column_name, $post_id)
+{
+    if ('job_id' == $column_name) {
+        $job_id = get_post_meta($post_id, '_coswift_job_id', true);
         echo esc_html($job_id);
     }
 }
-add_action( 'manage_coswift_jobs_posts_custom_column', 'coswift_jobs_id_column_content', 10, 2 );
+add_action('manage_coswift_jobs_posts_custom_column', 'coswift_jobs_id_column_content', 10, 2);
 
-function coswift_jobs_add_company_column($columns) {
+function coswift_jobs_add_company_column($columns)
+{
     $columns['company'] = 'Company';
     return $columns;
 }
 add_filter('manage_coswift_jobs_posts_columns', 'coswift_jobs_add_company_column');
 
-function coswift_jobs_company_column_content($column_name, $post_id) {
+function coswift_jobs_company_column_content($column_name, $post_id)
+{
     if ($column_name == 'company') {
         $company = get_post_meta($post_id, 'company', true);
         echo esc_html($company);
@@ -214,9 +227,10 @@ function coswift_jobs_company_column_content($column_name, $post_id) {
 add_action('manage_coswift_jobs_posts_custom_column', 'coswift_jobs_company_column_content', 10, 2);
 
 
-function coswift_jobs_columns_order( $columns ) {
+function coswift_jobs_columns_order($columns)
+{
     $new_order = [];
-    foreach($columns as $key => $value) {
+    foreach ($columns as $key => $value) {
         if ($key == 'title') {
             $new_order[$key] = $value;
             $new_order['job_id'] = 'Job ID';
@@ -226,10 +240,10 @@ function coswift_jobs_columns_order( $columns ) {
     }
     $new_order['date'] = 'Date';
     return $new_order;
-    
 }
-add_filter( 'manage_coswift_jobs_posts_columns', 'coswift_jobs_columns_order', 15 );
-function coswift_jobs_shortcode($atts) {
+add_filter('manage_coswift_jobs_posts_columns', 'coswift_jobs_columns_order', 15);
+function coswift_jobs_shortcode($atts)
+{
     global $wp;
     ob_start(); // Start output buffering
 
@@ -261,7 +275,7 @@ function coswift_jobs_shortcode($atts) {
         </select>
         <input type="submit" value="Filter">
     </form>
-    <?php
+<?php
 
     // Adjust your WP_Query arguments based on the filter selections
     $meta_query_args = []; // Initialize meta query arguments array
@@ -304,7 +318,7 @@ function coswift_jobs_shortcode($atts) {
             $post_id = get_the_ID();
             echo '<div class="coswift-job">';
             echo '<h2>' . get_the_title() . '</h2>';
-            
+
             // Display all custom fields in divs
             $custom_fields = get_post_custom($post_id);
             foreach ($custom_fields as $key => $value) {
@@ -331,7 +345,7 @@ function coswift_jobs_shortcode($atts) {
 add_shortcode('coswiftjobs', 'coswift_jobs_shortcode');
 
 // ACF Override
-add_action('init', function() {
+add_action('init', function () {
     // Check if ACF is active
     if (function_exists('acf_add_local_field_group')) {
 
@@ -388,53 +402,58 @@ add_action('init', function() {
 
 
 // Register with Elementor
-add_action('elementor_pro/init', function() {
-    if ( ! function_exists('ElementorPro\Modules\DynamicTags\Module::instance') ) {
+add_action('elementor_pro/init', function () {
+    if (! function_exists('ElementorPro\Modules\DynamicTags\Module::instance')) {
         return;
     }
 
     $dynamic_tags = ElementorPro\Modules\DynamicTags\Module::instance();
 
     // Function to register the custom fields as dynamic tags
-    $register_custom_field = function($field_key, $field_label) use ($dynamic_tags) {
+    $register_custom_field = function ($field_key, $field_label) use ($dynamic_tags) {
         $dynamic_tags->register_tag(new class($field_key, $field_label) extends \ElementorPro\Modules\DynamicTags\Tags\Base_Data_Tag {
             private $field_key;
             private $field_label;
 
-            public function __construct($field_key, $field_label) {
+            public function __construct($field_key, $field_label)
+            {
                 $this->field_key = $field_key;
                 $this->field_label = $field_label;
             }
 
-            public function get_name() {
+            public function get_name()
+            {
                 return 'coswift_job_' . $this->field_key;
             }
 
-            public function get_title() {
+            public function get_title()
+            {
                 return __($this->field_label, 'text-domain');
             }
 
-            public function get_categories() {
-                return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
+            public function get_categories()
+            {
+                return [\Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY];
             }
 
             public
 
-function get_value(array $options = []) {
-global $post;
-return get_post_meta($post->ID, $this->field_key, true);
-}
-});
-};
+            function get_value(array $options = [])
+            {
+                global $post;
+                return get_post_meta($post->ID, $this->field_key, true);
+            }
+        });
+    };
 
-// Register each custom field
-$register_custom_field('_coswift_job_id', 'CoSwift Job ID');
-$register_custom_field('departments', 'CoSwift Departments');
-$register_custom_field('locations', 'CoSwift Locations');
-$register_custom_field('roles', 'CoSwift Roles');
-
+    // Register each custom field
+    $register_custom_field('_coswift_job_id', 'CoSwift Job ID');
+    $register_custom_field('departments', 'CoSwift Departments');
+    $register_custom_field('locations', 'CoSwift Locations');
+    $register_custom_field('roles', 'CoSwift Roles');
 });
-function get_unique_meta_values($meta_key) {
+function get_unique_meta_values($meta_key)
+{
     global $wpdb;
     $meta_values = $wpdb->get_col($wpdb->prepare("
         SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
@@ -446,7 +465,7 @@ function get_unique_meta_values($meta_key) {
     ", $meta_key));
 
     // Filter out any empty values
-    return array_filter($meta_values, function($value) {
+    return array_filter($meta_values, function ($value) {
         return !empty($value);
     });
 }
